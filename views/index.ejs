@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <h1>Submit Form</h1>
+  <form action="/submit" method="post">
+    <label for="bakgrunn">Skriv litt om din bakgrunn:</label>
+    <textarea id="bakgrunn" name="bakgrunn"></textarea><br>
+
+    <label for="arbeidsgiver">Skriv litt om arbeidsgiveren:</label>
+    <textarea id="arbeidsgiver" name="arbeidsgiver"></textarea><br>
+
+    <label for="oppgaver">Skriv litt om arbeidsoppgavene arbeidsgiveren ser etter:</label>
+    <textarea id="oppgaver" name="oppgaver"></textarea><br>
+
+    <label for="kvalifikasjoner">Hva er de ønskede kvalifikasjonene:</label>
+    <textarea id="kvalifikasjoner" name="kvalifikasjoner"></textarea><br>
+
+    <label for="egenskaperØnsket">Skriv litt om ønskede egenskaper fra arbeidsgiver:</label>
+    <textarea id="egenskaperØnsket" name="egenskaperØnsket"></textarea><br>
+
+    <label for="motivasjon">Skriv litt om din motivasjon for jobben:</label>
+    <textarea id="motivasjon" name="motivasjon"></textarea><br>
+
+    <label for="mineKvalifikasjoner">Skriv litt om dine kvalifikasjoner:</label>
+    <textarea id="mineKvalifikasjoner" name="mineKvalifikasjoner"></textarea><br>
+
+    <label for="mineEgenskaper">Skriv litt om dine egenskaper:</label>
+    <textarea id="mineEgenskaper" name="mineEgenskaper"></textarea><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="application"><%= application %></p>
+</body>
+</html>
