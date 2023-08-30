@@ -1,0 +1,26 @@
+[
+  {
+    "formell": [
+      { "role": "user", "content": "eksempel på brukertekst" },
+      { "role": "assistant", "content": "eksempel på formell jobbsøknad" }
+    ]
+  },
+  {
+    "casual": [
+      { "role": "user", "content": "eksempel på brukertekst" },
+      { "role": "assistant", "content": "eksempel på casual jobbsøknad" }
+    ]
+  },
+  {
+    "engsjert": [
+      { "role": "user", "content": "eksempel på brukertekst" },
+      { "role": "assistant", "content": "eksempel på casual jobbsøknad" }
+    ]
+  },
+  {
+    "kreativ": [
+      { "role": "user", "content": "eksempel på brukertekst" },
+      { "role": "assistant", "content": "eksempel på casual jobbsøknad" }
+    ]
+  }
+]
