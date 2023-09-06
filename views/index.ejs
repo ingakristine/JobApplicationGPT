@@ -2,50 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <%- include('./partials/head.ejs') %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-  <h1>Jobbsøknad skjema</h1>
-  <h2>Fyll ut skjemaet under og trykk send for å generere en jobbsøknad!</h2>
-  <form action="/submit" method="post">
-    <label for="stilling">Jeg skal søke på stillingen som:</label>
-    <textarea id="stilling" name="stilling"></textarea><br>
+  <div class="container mt-5">
+    <h1 class="text-center">Jobbsøknad skjema</h1>
+    <h2 class="text-center">Fyll ut skjemaet under og trykk send for å generere en jobbsøknad!</h2>
+    <form action="/submit" method="post">
+      <div class="form-group mb-4">
+        <label for="stilling">Jeg skal søke på stillingen som:</label>
+        <textarea class="form-control" id="stilling" name="stilling" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="arbeidsgiver">Skriv litt om arbeidsgiveren:</label>
+        <textarea class="form-control" id="arbeidsgiver" name="arbeidsgiver" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="arbeidsOppgaver">Skriv litt om arbeidsoppgavene i stillingen:</label>
+        <textarea class="form-control" id="arbeidsOppgaver" name="arbeidsOppgaver" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="kvalifikasjonerØnsket">Hva er de ønskede kvalifikasjonene:</label>
+        <textarea class="form-control" id="kvalifikasjonerØnsket" name="kvalifikasjonerØnsket" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="egenskaperØnsket">Skriv litt om ønskede egenskaper fra arbeidsgiver:</label>
+        <textarea class="form-control" id="egenskaperØnsket" name="egenskaperØnsket" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="minBakgrunn">Skriv litt om din bakgrunn:</label>
+        <textarea class="form-control" id="minBakgrunn" name="minBakgrunn" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="mineKvalifikasjoner">Skriv litt om dine kvalifikasjoner:</label>
+        <textarea class="form-control" id="mineKvalifikasjoner" name="mineKvalifikasjoner" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="mineEgenskaper">Skriv litt om dine egenskaper. Gi gjerne eksempler:</label>
+        <textarea class="form-control" id="mineEgenskaper" name="mineEgenskaper" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <label for="motivasjon">Skriv litt om din motivasjon for jobben:</label>
+        <textarea class="form-control" id="motivasjon" name="motivasjon" rows="5" maxlength="500" placeholder="Skriv her..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  
 
-    <label for="arbeidsgiver">Skriv litt om arbeidsgiveren:</label>
-    <textarea id="arbeidsgiver" name="arbeidsgiver"></textarea><br>
-    
-    <label for="arbeidsOppgaver">Skriv litt om arbeidsoppgavene i jobben:</label>
-    <textarea id="arbeidsOppgaver" name="arbeidsOppgaver"></textarea><br>
+    <% if(application){ %>
+      <div id="application" class="text-center"><%- application %></div>
+      <button id="downloadButton" class="btn btn-primary">Last ned</button>
+    <% } %>
+  </div>
+  
+  <script>
+    const text = document.getElementById("application").innerText;
+    const blob = new Blob([text], { type: "application/msword" });
 
-    <label for="kvalifikasjonerØnsket">Hva er de ønskede kvalifikasjonene:</label>
-    <textarea id="kvalifikasjonerØnsket" name="kvalifikasjonerØnsket"></textarea><br>
+    const url = URL.createObjectURL(blob);
+    const a = document.getElementById("downloadButton");
+    a.href = url;
+    // a.download = "Jobbsøknad.docx";
+    // a.textContent = "Last ned jobbsøknad";
 
-    <label for="egenskaperØnsket">Skriv litt om ønskede egenskaper fra arbeidsgiver:</label>
-    <textarea id="egenskaperØnsket" name="egenskaperØnsket"></textarea><br>
-
-    <label for="minBakgrunn">Skriv litt om din bakgrunn:</label>
-    <textarea id="minBakgrunn" name="minBakgrunn"></textarea><br>
-
-    <label for="mineKvalifikasjoner">Skriv litt om dine kvalifikasjoner:</label>
-    <textarea id="mineKvalifikasjoner" name="mineKvalifikasjoner"></textarea><br>
-
-    <label for="mineEgenskaper">Skriv litt om dine egenskaper. Gi gjerne eksempler:</label>
-    <textarea id="mineEgenskaper" name="mineEgenskaper"></textarea><br>
-
-    <label for="motivasjon">Skriv litt om din motivasjon for jobben:</label>
-    <textarea id="motivasjon" name="motivasjon"></textarea><br>
-
-    
-
-    <button type="submit">Submit</button>
-  </form>
-
-  <% if(application){ %>
-    <div id="application"><%- application %></div>
-  <% } %>
+    a.addEventListener("click", function () {
+      a.style.display = "none";
+      setTimeout(() => {
+        a.style.display = "block";
+        URL.revokeObjectURL(url);
+      }, 100);
+    });
+  </script>
 
 
+  <%- include('./partials/scripts.ejs') %>
 </body>
 </html>

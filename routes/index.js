@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
   } catch(err){
     console.log('An error occured.')
   }
-  
 });
 
 router.post('/submit', async function(req, res, next){
